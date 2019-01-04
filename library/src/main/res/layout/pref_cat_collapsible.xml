@@ -44,6 +44,7 @@
             android:id="@android:id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tint="?android:textColorPrimary"
             app:maxWidth="48dp"
             app:maxHeight="48dp"
             app:srcCompat="@drawable/arrow_up"
@@ -64,8 +65,9 @@
             android:layout_height="wrap_content"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="?attr/colorAccent"
-            android:gravity="start"/>
+            android:textColor="?colorAccent"
+            android:gravity="start"
+        />
 
         <TextView
             android:id="@android:id/summary"
