@@ -82,7 +82,7 @@ class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet
         val children = ArrayList<String>()
 
         for (i in 0 until wrappedGroup.preferenceCount) {
-            children.add(wrappedGroup.getPreference(i).title.toString())
+            children.add(wrappedGroup.getPreference(i).title?.toString() ?: continue)
         }
 
         summary = TextUtils.join(", ", children)
