@@ -1,9 +1,11 @@
 package tk.zwander.collapsiblepreferencecategory
 
+import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.content.Context
 import android.text.TextUtils
 import android.util.AttributeSet
+import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
@@ -68,6 +70,8 @@ class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet
         holder.itemView.setOnClickListener {
             expanded = !expanded
         }
+        (holder.itemView as ViewGroup).layoutTransition
+            .enableTransitionType(LayoutTransition.CHANGING)
     }
 
     override fun addPreference(preference: Preference): Boolean {
