@@ -70,8 +70,9 @@ class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet
         holder.itemView.setOnClickListener {
             expanded = !expanded
         }
-        (holder.itemView as ViewGroup).layoutTransition
-            .enableTransitionType(LayoutTransition.CHANGING)
+        (holder.itemView as ViewGroup).layoutTransition = LayoutTransition().apply {
+            enableTransitionType(LayoutTransition.CHANGING)
+        }
     }
 
     override fun addPreference(preference: Preference): Boolean {
