@@ -25,7 +25,6 @@
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:paddingRight="?android:attr/listPreferredItemPaddingRight"
         android:background="?android:attr/selectableItemBackground"
-        android:animateLayoutChanges="true"
         android:baselineAligned="false"
         android:gravity="center_vertical">
 
@@ -54,6 +53,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/text_holder"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
