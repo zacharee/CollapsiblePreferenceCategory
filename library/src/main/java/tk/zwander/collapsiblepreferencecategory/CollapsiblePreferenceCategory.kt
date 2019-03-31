@@ -11,6 +11,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceManager
 import androidx.preference.PreferenceViewHolder
+import kotlinx.android.synthetic.main.pref_cat_collapsible.view.*
 
 class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet) :
     PreferenceCategory(context, attributeSet) {
@@ -84,7 +85,7 @@ class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet
         holder.itemView.setOnClickListener {
             expanded = !expanded
         }
-        holder.itemView.findViewById<ViewGroup>(R.id.collapsible_text_holder).layoutTransition =
+        holder.itemView.collapsible_text_holder.layoutTransition =
             LayoutTransition().apply {
                 enableTransitionType(LayoutTransition.CHANGING)
             }
