@@ -25,6 +25,10 @@ class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet
             } else {
                 summary = null
             }
+
+            if (!key.isNullOrBlank()) {
+                persistBoolean(value)
+            }
         }
 
     private val wrappedGroup = object : PreferenceCategory(context) {
@@ -46,6 +50,15 @@ class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet
 
         val array = context.theme.obtainStyledAttributes(attributeSet, R.styleable.CollapsiblePreferenceCategory, 0, 0)
         expanded = array.getBoolean(R.styleable.CollapsiblePreferenceCategory_default_expanded, expanded)
+    }
+
+    override fun onSetInitialValue(defaultValue: Any?) {
+        expanded = defaultValue?.run {
+            val bool = toString().toBoolean()
+
+            if (shouldPersist()) getPersistedBoolean(bool)
+            else bool
+        } ?: false
     }
 
     @SuppressLint("RestrictedApi")
