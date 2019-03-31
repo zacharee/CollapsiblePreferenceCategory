@@ -53,12 +53,12 @@ class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet
     }
 
     override fun onSetInitialValue(defaultValue: Any?) {
-        expanded = defaultValue?.run {
-            val bool = toString().toBoolean()
+        expanded = run {
+            val defBool = defaultValue?.toString()?.toBoolean() ?: false
 
-            if (shouldPersist()) getPersistedBoolean(bool)
-            else bool
-        } ?: false
+            if (shouldPersist()) getPersistedBoolean(defBool)
+            else defBool
+        }
     }
 
     @SuppressLint("RestrictedApi")
