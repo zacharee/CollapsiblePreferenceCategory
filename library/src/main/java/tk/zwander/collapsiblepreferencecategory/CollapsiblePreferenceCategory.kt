@@ -5,14 +5,15 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.text.TextUtils
 import android.util.AttributeSet
+import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceManager
 import androidx.preference.PreferenceViewHolder
-import kotlinx.android.synthetic.main.pref_cat_collapsible.view.*
 
-class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet) : PreferenceCategory(context, attributeSet) {
+class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet) :
+    PreferenceCategory(context, attributeSet) {
     var expanded = false
         set(value) {
             field = value
@@ -79,13 +80,14 @@ class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet
 
         val icon = holder.itemView.findViewById<ImageView>(android.R.id.icon)
         icon.animate()
-                .scaleY(if (expanded) 1f else -1f)
+            .scaleY(if (expanded) 1f else -1f)
         holder.itemView.setOnClickListener {
             expanded = !expanded
         }
-        holder.itemView.collapsible_text_holder.layoutTransition = LayoutTransition().apply {
-            enableTransitionType(LayoutTransition.CHANGING)
-        }
+        holder.itemView.findViewById<ViewGroup>(R.id.collapsible_text_holder).layoutTransition =
+            LayoutTransition().apply {
+                enableTransitionType(LayoutTransition.CHANGING)
+            }
     }
 
     override fun addPreference(preference: Preference): Boolean {
