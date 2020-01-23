@@ -32,9 +32,10 @@ class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet
             }
         }
 
-    private val wrappedGroup = object : PreferenceCategory(context) {
+    val wrappedGroup = object : PreferenceCategory(context) {
         init {
             layoutResource = R.layout.zero_height_pref
+            isOrderingAsAdded = this@CollapsiblePreferenceCategory.isOrderingAsAdded
         }
 
         override fun onBindViewHolder(holder: PreferenceViewHolder) {
