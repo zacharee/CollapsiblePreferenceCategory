@@ -15,6 +15,9 @@ import kotlinx.android.synthetic.main.pref_cat_collapsible.view.*
 
 class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet) :
     PreferenceCategory(context, attributeSet) {
+    private val toAdd = ArrayList<Preference>()
+    private val toRemove = ArrayList<Preference>()
+
     var expanded = false
         set(value) {
             field = value
@@ -36,6 +39,16 @@ class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet
         init {
             layoutResource = R.layout.zero_height_pref
             isOrderingAsAdded = this@CollapsiblePreferenceCategory.isOrderingAsAdded
+
+            toAdd.forEach {
+                addPreference(it)
+            }
+            toAdd.clear()
+
+            toRemove.forEach {
+                removePreference(it)
+            }
+            toRemove.clear()
         }
 
         override fun onBindViewHolder(holder: PreferenceViewHolder) {
@@ -50,8 +63,14 @@ class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet
         layoutResource = R.layout.pref_cat_collapsible
         setIcon(R.drawable.arrow_up)
 
-        val array = context.theme.obtainStyledAttributes(attributeSet, R.styleable.CollapsiblePreferenceCategory, 0, 0)
-        expanded = array.getBoolean(R.styleable.CollapsiblePreferenceCategory_default_expanded, expanded)
+        val array = context.theme.obtainStyledAttributes(
+            attributeSet,
+            R.styleable.CollapsiblePreferenceCategory,
+            0,
+            0
+        )
+        expanded =
+            array.getBoolean(R.styleable.CollapsiblePreferenceCategory_default_expanded, expanded)
     }
 
     override fun onSetInitialValue(defaultValue: Any?) {
@@ -92,12 +111,22 @@ class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet
             }
     }
 
+    @SuppressLint("RestrictedApi")
     override fun addPreference(preference: Preference): Boolean {
-        return wrappedGroup.addPreference(preference)
+        return if (!isAttached) {
+            toAdd.add(preference)
+        } else {
+            wrappedGroup.addPreference(preference)
+        }
     }
 
+    @SuppressLint("RestrictedApi")
     override fun removePreference(preference: Preference): Boolean {
-        return wrappedGroup.removePreference(preference)
+        return if (!isAttached) {
+            toRemove.add(preference)
+        } else {
+            wrappedGroup.removePreference(preference)
+        }
     }
 
     private fun generateSummary() {
