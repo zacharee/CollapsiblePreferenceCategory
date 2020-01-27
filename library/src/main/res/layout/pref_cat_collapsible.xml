@@ -29,7 +29,7 @@
         android:gravity="center_vertical">
 
     <LinearLayout
-        android:id="@+id/collapsible_icon_frame"
+        android:id="@+id/collapsible_icon_frame_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="56dp"
@@ -40,8 +40,8 @@
         android:paddingTop="4dp"
         android:paddingBottom="4dp">
 
-        <androidx.preference.internal.PreferenceImageView
-            android:id="@android:id/icon"
+        <androidx.preference.internal.AppCompatPreferenceImageView
+            android:id="@+id/icon_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:tint="?android:textColorPrimary"
@@ -84,5 +84,29 @@
             />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/collapsible_icon_frame_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="56dp"
+        android:gravity="end|center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingLeft="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp">
+
+        <androidx.preference.internal.AppCompatPreferenceImageView
+            android:id="@+id/icon_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="?android:textColorPrimary"
+            app:srcCompat="@drawable/arrow_up"
+            app:maxWidth="48dp"
+            app:maxHeight="48dp"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="default_expanded" format="boolean|reference" />
 
     <declare-styleable name="CollapsiblePreferenceCategory">
-        <attr name="default_expanded" format="boolean|reference" />
+        <attr name="default_expanded" />
+    </declare-styleable>
+
+    <declare-styleable name="CollapsiblePreferenceCategoryNew">
+        <attr name="default_expanded" />
+        <attr name="arrow_side" format="enum">
+            <enum name="start" value="0" />
+            <enum name="end" value="1" />
+        </attr>
     </declare-styleable>
 
 </resources>
