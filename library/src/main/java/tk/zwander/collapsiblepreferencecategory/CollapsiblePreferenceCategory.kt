@@ -5,12 +5,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.text.TextUtils
 import android.util.AttributeSet
+import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceManager
 import androidx.preference.PreferenceViewHolder
-import kotlinx.android.synthetic.main.pref_cat_collapsible.view.*
 
 open class CollapsiblePreferenceCategory(context: Context, attributeSet: AttributeSet?) :
     PreferenceCategory(context, attributeSet) {
@@ -94,7 +94,7 @@ open class CollapsiblePreferenceCategory(context: Context, attributeSet: Attribu
         holder.itemView.setOnClickListener {
             expanded = !expanded
         }
-        holder.itemView.collapsible_text_holder.layoutTransition =
+        holder.itemView.findViewById<ViewGroup>(R.id.collapsible_text_holder).layoutTransition =
             LayoutTransition().apply {
                 enableTransitionType(LayoutTransition.CHANGING)
             }
