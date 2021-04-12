@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceViewHolder
-import kotlinx.android.synthetic.main.pref_cat_collapsible.view.*
+import tk.zwander.collapsiblepreferencecategory.databinding.PrefCatCollapsibleBinding
 
 open class CollapsiblePreferenceCategoryNew(context: Context, attrs: AttributeSet?) : PreferenceCategory(context, attrs) {
     enum class ArrowSide {
@@ -85,10 +85,12 @@ open class CollapsiblePreferenceCategoryNew(context: Context, attrs: AttributeSe
     override fun onBindViewHolder(holder: PreferenceViewHolder) {
         super.onBindViewHolder(holder)
 
-        val iconStart = holder.itemView.icon_start
-        val iconEnd = holder.itemView.icon_end
-        val iconFrameStart = holder.itemView.collapsible_icon_frame_start
-        val iconFrameEnd = holder.itemView.collapsible_icon_frame_end
+        val binding = PrefCatCollapsibleBinding.bind(holder.itemView)
+
+        val iconStart = binding.iconStart
+        val iconEnd = binding.iconEnd
+        val iconFrameStart = binding.collapsibleIconFrameStart
+        val iconFrameEnd = binding.collapsibleIconFrameEnd
 
         iconStart.animate()
             .scaleY(if (expanded || arrowSide != ArrowSide.START) 1f else -1f)
@@ -118,7 +120,7 @@ open class CollapsiblePreferenceCategoryNew(context: Context, attrs: AttributeSe
         holder.itemView.setOnClickListener {
             expanded = !expanded
         }
-        holder.itemView.collapsible_text_holder.layoutTransition =
+        binding.collapsibleTextHolder.layoutTransition =
             LayoutTransition().apply {
                 enableTransitionType(LayoutTransition.CHANGING)
             }
