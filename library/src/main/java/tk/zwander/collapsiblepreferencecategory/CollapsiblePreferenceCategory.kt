@@ -72,7 +72,7 @@ open class CollapsiblePreferenceCategory(context: Context, attributeSet: Attribu
     }
 
     @SuppressLint("RestrictedApi")
-    override fun onAttachedToHierarchy(preferenceManager: PreferenceManager?) {
+    override fun onAttachedToHierarchy(preferenceManager: PreferenceManager) {
         super.onAttachedToHierarchy(preferenceManager)
 
         if (!wrappedGroup.isAttached)
